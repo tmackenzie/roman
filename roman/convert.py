@@ -1,3 +1,4 @@
+import math
 '''
     The following is taken from the Python Cookbook, by Alex Martelli, David Ascher
     http://books.google.com/books?id=yhfdQgq8JF4C
@@ -7,22 +8,32 @@
 
 def int_to_roman(input):
     ''' 
-       given and integer, input, that is greater than 0 and less than, 4000
+       given an integer, input, that is greater than 0 and less than, 4000
        return its modern roman numeral represenation
     '''
 
     if not 0 < input < 4000:
-       raise ValueError, "input must be between 1 and 3999"   
+        raise ValueError, "input must be between 1 and 3999"
 
-    romans = ( 'M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I')
-    ints = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    # two dimensions allow for faster lookups in starting conversion.
+    ints_to_romans = [[ (9,'IX'), (5,'V'), (4, 'IV'), (1,'I')],
+                      [ (90, 'XC'), (50, 'L'), (40,'XL'), (10,'X')],
+                      [ (900, 'CM'), (500,'D'),(400,'CD'),( 100,'C')],
+                      [ (1000, 'M')]]
 
     result = []
+  
+    # determines where to start. 
+    index_lookup = int(math.log10(input)) 
 
-    for i in range(len(romans)):
-        count = input / ints[i]
-        result.append(romans[i] * count)
-        input -= ints[i] * count 
+    while input != 0:
+    
+        for digit, roman in ints_to_romans[index_lookup]:
+            count = input / digit
+            result.append(roman * count)
+            input -= digit * count 
+        
+        index_lookup-=1
 
     return ''.join(result)
 
