@@ -9,8 +9,6 @@ def int_to_roman(input):
     ''' 
        given and integer, input, that is greater than 0 and less than, 4000
        return its modern roman numeral represenation
-
-
     '''
 
     if not 0 < input < 4000:
@@ -28,4 +26,24 @@ def int_to_roman(input):
 
     return ''.join(result)
 
+def roman_to_int(input):
+    ''' 
+        Given a string that represents a roman numeral, return its integer value
+    '''
     
+    input = input.upper()
+    nums = {'M':1000, 'D':500, 'C':100, 'L':50, 'X':10, 'V':5, 'I':1}
+    sum = 0
+    for i in range(len(input)):
+        try:
+            value = nums[input[i]]
+
+            # If the next place holds a larger number, this value is negative.            
+            if i+1 < len(input) and nums[input[i+1]] > value:
+                sum -= value
+            else:
+                sum += value
+        except KeyError:
+            raise ValueError, 'input is not a valid Roman numeral: %s' % input
+
+    return sum 
