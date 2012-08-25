@@ -1,5 +1,5 @@
 import unittest
-from roman.calculator import int_to_roman
+from roman.convert import int_to_roman
 
 class IntToRomanTests(unittest.TestCase):
     '''
