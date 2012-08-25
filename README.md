@@ -3,7 +3,7 @@ RomanNumerals
 
 Decimal and Roman Numeral Converter
 
-This converts modern roman numerals to decimals and decimals to
+This converts modern roman numerals to integers and integers to
 modern roman numerals.
 
 This does not make use of the overbar or pipe symbol to indicate 
