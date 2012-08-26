@@ -7,6 +7,9 @@ from lookup import INT_TO_ROMAN, ROMAN_TO_INT
 
 """
 
+# used in roman_to_int
+ROMAN_VALIDATE_RE = re.compile('^([M]{4,})')
+ROMAN_GROUP_RE = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)')
 
 def int_to_roman(input):
     """
@@ -67,16 +70,12 @@ def roman_to_int(input):
     input = input.upper()
 
     # regular expression to validate.
-    roman_validate_re = re.compile('^([M]{4,})')
 
-    if roman_validate_re.match(input) or input == "NULLA":
+    if ROMAN_VALIDATE_RE.match(input) or input == "NULLA":
         raise ValueError("input must be between I and MMM")
 
-    # regular expression to parse the input string.
-    roman_group_re = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)')
-
     # parse input..
-    thousands, hundreds, tens, ones = roman_group_re.match(input).groups()
+    thousands, hundreds, tens, ones = ROMAN_GROUP_RE.match(input).groups()
 
     result = 0
 
