@@ -75,5 +75,9 @@ class RomanToIntTests(unittest.TestCase):
         number = roman_to_int("MMMCMXCIX")
         self.assertEqual(number, 3999)
 
+    def test_convert_MCMXLIV(self):
+        # got this one from wiki. should be able subtract larger ones..
+        number = roman_to_int("MCMXLIV")
+        self.assertEqual(number, 1944)
 if __name__ == "__main__":
     unittest.main()
