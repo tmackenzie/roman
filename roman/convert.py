@@ -9,6 +9,19 @@ def int_to_roman(input):
     ''' 
        given and integer, input, that is greater than 0 and less than, 4000
        return its modern roman numeral represenation
+
+       worst/best case.
+       O(1) - b/c no matter what the input is, 
+        - it will always execute the same methods, comparators and assignments.   
+
+       performs:
+        - 2 method calls.
+        - 2 comparators.
+
+       performs 13 times..
+        - 3 operations.
+        - 3 reads
+        - 2 writes
     '''
 
     if not 0 < input < 4000:
