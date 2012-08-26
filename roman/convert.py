@@ -15,6 +15,7 @@ def int_to_roman(input):
     if not 0 < input < 4000:  # 2 comparators
         raise ValueError("input must be between 1 and 3999")
 
+    # these could of just been lists, for speed purposes they are dicts.
     int_to_roman = {
         1: {1: (1, 'I'),
             2: (2, 'II'),
@@ -58,10 +59,14 @@ def int_to_roman(input):
             4 = thousands.
 
         factor, is the whole number for the current significant digit.
+        used to calculate, count.
             example, input = 101
-            - factor will be 100.
+            - factor = 100.
 
-        count, is the index mapping for the key in the inner dict.
+        count, the number of times input is divisible by factor.
+        used to lookup the arabic, romans tuple.
+            example, input = 101, factor = 100
+            - count = 1
 
     """
 
@@ -71,11 +76,12 @@ def int_to_roman(input):
         factor = 10 ** (significant - 1)
         count = (input / factor)
 
-        # acquire the arabic and roman values 
+        # acquire the arabic and roman values
         number, roman = int_to_roman[significant][count]
-
         result.append(roman)
-        input -= count * factor
+
+        # this could just be, count * factor.
+        input -= number
 
     return ''.join(result)
 
