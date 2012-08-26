@@ -11,3 +11,9 @@ multiplication by 1,000 or 100 and therefor the largest number
 that can be represented is:
 
 MMMCMXCIX or 3,999
+
+
+Running Tests
+=============
+
+python tests/roman_tests.py
