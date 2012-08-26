@@ -13,27 +13,27 @@ def int_to_roman(input):
        return its modern roman numeral represenation
 
     '''
-    if not 0 < input < 4000: # 2 comparators
+
+    if not 0 < input < 4000:  # 2 comparators
         raise ValueError("input must be between 1 and 3999")
 
     romans = [
-        ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'], # ones
-        ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'], # tens
-        ['C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'], # hundreds,
-        ['M', 'MM', 'MMM']] # thosands
+        ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],  # ones
+        ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],  # tens
+        ['C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],  # hundreds,
+        ['M', 'MM', 'MMM']]  # thosands
 
     ints = [
-        [1, 2, 3, 4, 5, 6, 7, 8, 9], # ones
-        [10, 20, 30, 40, 50, 60, 70, 80, 90], # tens
-        [100, 200, 300, 400, 500, 600, 700, 800, 900], # hundreds,
-        [1000, 2000, 3000] ] # thousands
+        [1, 2, 3, 4, 5, 6, 7, 8, 9],  # ones
+        [10, 20, 30, 40, 50, 60, 70, 80, 90],  # tens
+        [100, 200, 300, 400, 500, 600, 700, 800, 900],  # hundreds,
+        [1000, 2000, 3000]]  # thousands
 
     result = []
 
-
-    while input !=  0:
+    while input != 0:
         input_length = int(math.log10(input))
-        factor = 10 ** (input_length) 
+        factor = 10 ** (input_length)
         count = (input / factor) - 1
         input -= ints[input_length][count]
         result.append(romans[input_length][count])
