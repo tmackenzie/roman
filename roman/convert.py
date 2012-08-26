@@ -11,9 +11,40 @@ def int_to_roman(input):
     '''
        given an integer, input, that is greater than 0 and less than, 4000
        return its modern roman numeral represenation
+
+       worst case:
+       O(N), input = Value for every significant digit. example, 1111
+       
+       cost +
+       13 * (1 comparator + 2 assignments + 1 read + 3 operations + 1 method call)
+
+       cost +
+       best case O(?), input = 1000
+       1 * ( 1 comparator + 2 assignments + 1 read + 3 operations + 1 method call)
+        
+       cost:
+        - 2 comparators
+        - 2 method calls
+        - 1 assignment
+
+        while loop:
+           - 1 comparators
+
+           for loop:
+               - 2 assignments
+               - 1 read
+               - 3 operations.
+               - 1 method call.
+
+       best case:
+
+       input = 1000
+
+
+
     '''
 
-    if not 0 < input < 4000:
+    if not 0 < input < 4000: # 2 comparators
         raise ValueError("input must be between 1 and 3999")
 
     # two dimensions allow for faster lookups in starting conversion.
@@ -25,14 +56,14 @@ def int_to_roman(input):
     result = []
 
     # determines where to start.
-    index_lookup = int(math.log10(input))
+    index_lookup = int(math.log10(input)) # 2 method calls, 1 write
 
-    while input != 0:
-        for digit, roman in ints_to_romans[index_lookup]:
-            count = input / digit
-            result.append(roman * count)
-            input -= digit * count
-        index_lookup -= 1
+    while input != 0: # 1 comparator
+        for digit, roman in ints_to_romans[index_lookup]: # 1 read, 2 writes
+            count = input / digit # 1 write, 1 operation
+            result.append(roman * count) # 1 method, 1 operation.
+            input -= digit * count # 1 write, 1 operation
+        index_lookup -= 1 # 1 write
 
     return ''.join(result)
 
