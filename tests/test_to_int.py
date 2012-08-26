@@ -2,7 +2,7 @@ import unittest
 from roman.convert import roman_to_int
 
 
-class RomanToIntTests(unittest.TestCase):
+class TestRomanToInt(unittest.TestCase):
     '''
         tests for converting a Roman numeral to an Integer
     '''

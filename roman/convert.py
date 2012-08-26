@@ -60,19 +60,24 @@ def int_to_roman(input):
 
 
 def roman_to_int(input):
-    '''
+    """
         Given a string that represents a roman numeral, then,
         return its integer value
 
         O(N) - iterates through all characters in the array.
-    '''
+    """
 
     input = input.upper()
 
-    # regular expression to validate.
 
     if ROMAN_VALIDATE_RE.match(input) or input == "NULLA":
         raise ValueError("input must be between I and MMM")
+
+    parsed_input = ROMAN_GROUP_RE.match(input)
+
+    import pdb; pdb.set_trace()
+    if parsed_input is None:
+        raise ValueError("Input must be a Roman Numeral")
 
     # parse input..
     thousands, hundreds, tens, ones = ROMAN_GROUP_RE.match(input).groups()
