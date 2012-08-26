@@ -42,24 +42,25 @@ def int_to_roman(input):
     if not 0 < input < 4000: # 2 comparators
         raise ValueError("input must be between 1 and 3999")
 
-    # two dimensions allow for faster lookups in starting conversion.
-    ints_to_romans = [[(9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')],
-                      [(90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X')],
-                      [(900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C')],
-                      [(1000, 'M')]]
+    ints_to_romans = [
+        ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'], # ones
+        ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'], # tens
+        ['C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'], # hundreds,
+        ['M',]] # thosands
 
     result = []
 
-    # determines where to start.
+    # number of digits in the input.
     index_lookup = int(math.log10(input)) # 2 method calls, 1 write
 
     while input != 0: # 1 comparator
+        import pdb; pdb.set_trace()
+        factor = 10 ** (index_lookup) # 1 assignment, 1 operation.
 
-        for digit, roman in ints_to_romans[index_lookup]: # 1 read, 3 writes
-            count = input / digit # 1 write, 1 operation
-            result.append(roman * count) # 1 method, 1 operation.
-            input -= digit * count # 1 write, 1 operation
-        index_lookup -= 1 # 1 write
+        count = input / factor # 1 assignment, 1 operation.
+        result.append(ints_to_roman[index_lookup - 1][count])
+        input =- count * factor
+        index_lookup -=1
 
     return ''.join(result)
 
