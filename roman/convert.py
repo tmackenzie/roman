@@ -69,7 +69,7 @@ def roman_to_int(input):
 
 
     if ROMAN_VALIDATE_RE.match(input) or input == "NULLA":
-        raise ValueError("input must be between I and MMM")
+        raise ValueError("input must be between I and MMMCMXCIX")
 
     parsed_input = ROMAN_GROUP_RE.match(input)
 
