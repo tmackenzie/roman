@@ -77,7 +77,7 @@ def roman_to_int(input):
         raise ValueError("Input must be a Roman Numeral")
 
     result = 0
-    for roman_numeral in ROMAN_GROUP_RE.match(input).groups():
+    for roman_numeral in parsed_input.groups():
         try:
             result += ROMAN_TO_INT[roman_numeral]
         except KeyError:
