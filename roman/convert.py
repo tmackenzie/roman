@@ -100,7 +100,7 @@ def roman_to_int(input):
     roman_validate_re = re.compile('^([M]{4,})')
 
     if roman_validate_re.match(input):
-        raise ValueError("input must be bewteen I and MMM")
+        raise ValueError("input must be between I and MMM")
 
     # regular expression to parse the input string.
     roman_group_re = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)')
