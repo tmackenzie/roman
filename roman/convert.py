@@ -80,7 +80,7 @@ def int_to_roman(input):
         number, roman = int_to_roman[significant][count]
         result.append(roman)
 
-        # this could just be, count * factor.
+        # this could just be, count * factor, its not b/c of speed.
         input -= number
 
     return ''.join(result)
