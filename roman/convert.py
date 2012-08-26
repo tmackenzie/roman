@@ -76,30 +76,11 @@ def roman_to_int(input):
     if parsed_input is None:
         raise ValueError("Input must be a Roman Numeral")
 
-    # parse input..
-    thousands, hundreds, tens, ones = ROMAN_GROUP_RE.match(input).groups()
-
     result = 0
-
-    # dont know if try/except is the best approach here.
-    try:
-        result += ROMAN_TO_INT[thousands]
-    except KeyError:
-        pass
-
-    try:
-        result += ROMAN_TO_INT[hundreds]
-    except KeyError:
-        pass
-
-    try:
-        result += ROMAN_TO_INT[tens]
-    except KeyError:
-        pass
-
-    try:
-        result += ROMAN_TO_INT[ones]
-    except KeyError:
-        pass
+    for roman_numeral in ROMAN_GROUP_RE.match(input).groups():
+        try:
+            result += ROMAN_TO_INT[roman_numeral]
+        except KeyError:
+            pass
 
     return result
