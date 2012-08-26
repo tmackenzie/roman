@@ -86,7 +86,6 @@ def int_to_roman(input):
 
     return ''.join(result)
 
-
 def roman_to_int(input):
     '''
         Given a string that represents a roman numeral, then,
@@ -97,7 +96,13 @@ def roman_to_int(input):
 
     input = input.upper()
 
-    # regular expression to parse and validate the input string.
+    # regular expression to validate.
+    roman_validate_re = re.compile('^([M]{4,})')
+
+    if roman_validate_re.match(input):
+        raise ValueError("input must be bewteen I and MMM")
+
+    # regular expression to parse the input string.
     roman_group_re = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)')
 
     # parse input..
@@ -138,6 +143,7 @@ def roman_to_int(input):
 
     result = 0
 
+    # dont know if try/except is the best approach here.
     try:
         result += roman_to_int[thousands]
     except KeyError:
@@ -157,5 +163,9 @@ def roman_to_int(input):
         result += roman_to_int[ones]
     except KeyError:
         pass
+
+    # if no result raise ValueError
+    if result == 0:
+        raise ValueError('Invalid input to convert')
 
     return result
