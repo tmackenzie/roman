@@ -1,64 +1,79 @@
-'''
-    The following is taken from the Python Cookbook, by Alex Martelli, David Ascher
-    http://books.google.com/books?id=yhfdQgq8JF4C
-
-'''
+import math
+"""
+    @author: tmackenzie
+        
+"""
 
 
 def int_to_roman(input):
-    ''' 
-       given and integer, input, that is greater than 0 and less than, 4000
+    """
+       given an integer, input, that is greater than 0 and less than, 4000
        return its modern roman numeral represenation
 
-       worst/best case.
-       O(1) - b/c no matter what the input is, 
-        - it will always execute the same methods, comparators and assignments.   
+    """
 
-       13 * ( 3 operations, 2 reads, 2 writes) + 2 method calls + 2 comparators.
+    if not 0 < input < 4000:  # 2 comparators
+        raise ValueError("input must be between 1 and 3999")
 
-       performs:
-        - 2 method calls.
-        - 2 comparators.
+    romans = [
+        ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],  # ones
+        ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],  # tens
+        ['C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],  # hundreds,
+        ['M', 'MM', 'MMM']]  # thosands
 
-       performs 13 times..
-        - 3 operations.
-        - 3 reads
-        - 2 writes
-    '''
-
-    if not 0 < input < 4000:
-       raise ValueError, "input must be between 1 and 3999"   
-
-    romans = ( 'M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I')
-    ints = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    ints = [
+        [1, 2, 3, 4, 5, 6, 7, 8, 9],  # ones
+        [10, 20, 30, 40, 50, 60, 70, 80, 90],  # tens
+        [100, 200, 300, 400, 500, 600, 700, 800, 900],  # hundreds,
+        [1000, 2000, 3000]]  # thousands
 
     result = []
 
-    for i in range(len(romans)):
-        count = input / ints[i]
-        result.append(romans[i] * count)
-        input -= ints[i] * count 
+    """
+        significant, is the significant digit of input..
+        used to lookup proper inner list in the ints, roman lists.
+            0 = ones.
+            1 = tens.
+            2 = hundreds
+            3 = thousands.
+
+        factor, is the whole number for the current significant digit.
+            example, input = 101
+            - factor will be 100.
+
+        count, is the index mapping to the inner lookup lists.
+
+    """
+
+    while input != 0:
+        significant = int(math.log10(input))
+        factor = 10 ** (significant)
+        count = (input / factor) - 1
+        input -= ints[significant][count]
+        result.append(romans[significant][count])
 
     return ''.join(result)
 
+
 def roman_to_int(input):
-    ''' 
-        Given a string that represents a roman numeral, return its integer value
     '''
-    
+        Given a string that represents a roman numeral, then,
+        return its integer value
+    '''
+
     input = input.upper()
-    nums = {'M':1000, 'D':500, 'C':100, 'L':50, 'X':10, 'V':5, 'I':1}
+    nums = {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1}
     sum = 0
     for i in range(len(input)):
         try:
             value = nums[input[i]]
 
-            # If the next place holds a larger number, this value is negative.            
-            if i+1 < len(input) and nums[input[i+1]] > value:
+            # If the next place holds a larger number, this value is negative.
+            if i + 1 < len(input) and nums[input[i + 1]] > value:
                 sum -= value
             else:
                 sum += value
         except KeyError:
-            raise ValueError, 'input is not a valid Roman numeral: %s' % input
+            raise ValueError('input is not a valid Roman numeral: %s' % input)
 
-    return sum 
+    return sum
