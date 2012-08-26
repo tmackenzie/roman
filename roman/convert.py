@@ -13,7 +13,7 @@ def int_to_roman(input):
 
     """
 
-    if not 0 < input < 4000:  # 2 comparators
+    if not 0 < input < 4000:
         raise ValueError("input must be between 1 and 3999")
 
     # these could of just been lists, for speed purposes they are dicts.
@@ -100,7 +100,7 @@ def roman_to_int(input):
     # regular expression to validate.
     roman_validate_re = re.compile('^([M]{4,})')
 
-    if roman_validate_re.match(input):
+    if roman_validate_re.match(input) or input == "NULLA":
         raise ValueError("input must be between I and MMM")
 
     # regular expression to parse the input string.
@@ -164,9 +164,5 @@ def roman_to_int(input):
         result += roman_to_int[ones]
     except KeyError:
         pass
-
-    # if no result raise ValueError
-    if result == 0:
-        raise ValueError('Invalid input to convert')
 
     return result
