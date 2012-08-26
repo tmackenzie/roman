@@ -75,7 +75,6 @@ def roman_to_int(input):
 
     parsed_input = ROMAN_GROUP_RE.match(input)
 
-    import pdb; pdb.set_trace()
     if parsed_input is None:
         raise ValueError("Input must be a Roman Numeral")
 

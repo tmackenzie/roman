@@ -160,3 +160,6 @@ class TestRomanToInt(unittest.TestCase):
         # got this one from wiki. should be able subtract larger ones..
         number = roman_to_int("MCMXLIV")
         self.assertEqual(number, 1944)
+
+if __name__ == "__main__":
+        unittest.main()
