@@ -20,47 +20,31 @@ def int_to_roman(input):
 
        best case O(?), input = 1000
 
-       cost + 
-       1 * ( 1 comparator + 2 assignments + 1 read + 3 operations + 1 method call)
-        
-       cost:
-        - 2 comparators
-        - 2 method calls
-        - 1 assignment
-
-        while loop:
-           - 1 comparators
-
-           for loop:
-               - 2 assignments
-               - 1 read
-               - 3 operations.
-               - 1 method call.
-
     '''
-
     if not 0 < input < 4000: # 2 comparators
         raise ValueError("input must be between 1 and 3999")
 
-    ints_to_romans = [
+    romans = [
         ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'], # ones
         ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'], # tens
         ['C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'], # hundreds,
-        ['M',]] # thosands
+        ['M', 'MM', 'MMM']] # thosands
+
+    ints = [
+        [1, 2, 3, 4, 5, 6, 7, 8, 9], # ones
+        [10, 20, 30, 40, 50, 60, 70, 80, 90], # tens
+        [100, 200, 300, 400, 500, 600, 700, 800, 900], # hundreds,
+        [1000, 2000, 3000] ] # thousands
 
     result = []
 
-    # number of digits in the input.
-    index_lookup = int(math.log10(input)) # 2 method calls, 1 write
 
-    while input != 0: # 1 comparator
-        import pdb; pdb.set_trace()
-        factor = 10 ** (index_lookup) # 1 assignment, 1 operation.
-
-        count = input / factor # 1 assignment, 1 operation.
-        result.append(ints_to_roman[index_lookup - 1][count])
-        input =- count * factor
-        index_lookup -=1
+    while input !=  0:
+        input_length = int(math.log10(input))
+        factor = 10 ** (input_length) 
+        count = (input / factor) - 1
+        input -= ints[input_length][count]
+        result.append(romans[input_length][count])
 
     return ''.join(result)
 
