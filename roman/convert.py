@@ -1,18 +1,16 @@
 import math
-'''
-    The following is taken from the Python Cookbook,
-    by Alex Martelli, David Ascher
-
-    http://books.google.com/books?id=yhfdQgq8JF4C
-'''
+"""
+    @author: tmackenzie
+        
+"""
 
 
 def int_to_roman(input):
-    '''
+    """
        given an integer, input, that is greater than 0 and less than, 4000
        return its modern roman numeral represenation
 
-    '''
+    """
 
     if not 0 < input < 4000:  # 2 comparators
         raise ValueError("input must be between 1 and 3999")
@@ -31,12 +29,28 @@ def int_to_roman(input):
 
     result = []
 
+    """
+        significant, is the significant digit of input..
+        used to lookup proper inner list in the ints, roman lists.
+            0 = ones.
+            1 = tens.
+            2 = hundreds
+            3 = thousands.
+
+        factor, is the whole number for the current significant digit.
+            example, input = 101
+            - factor will be 100.
+
+        count, is the index mapping to the inner lookup lists.
+
+    """
+
     while input != 0:
-        input_length = int(math.log10(input))
-        factor = 10 ** (input_length)
+        significant = int(math.log10(input))
+        factor = 10 ** (significant)
         count = (input / factor) - 1
-        input -= ints[input_length][count]
-        result.append(romans[input_length][count])
+        input -= ints[significant][count]
+        result.append(romans[significant][count])
 
     return ''.join(result)
 
