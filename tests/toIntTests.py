@@ -15,6 +15,10 @@ class RomanToIntTests(unittest.TestCase):
         ''' expected to raise a Value Error if the input is > 3999 '''
         self.assertRaises(ValueError, roman_to_int, "MMMM")
 
+    def test_raise_jiberish(self):
+        ''' expected to raise a ValueError when invalid input '''
+        self.assertRaises(ValueError, roman_to_int, "blah balha 98988")
+
     def test_convert_I(self):
         number = roman_to_int("I")
         self.assertEqual(number, 1)
@@ -79,5 +83,6 @@ class RomanToIntTests(unittest.TestCase):
         # got this one from wiki. should be able subtract larger ones..
         number = roman_to_int("MCMXLIV")
         self.assertEqual(number, 1944)
+
 if __name__ == "__main__":
     unittest.main()
