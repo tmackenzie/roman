@@ -1,8 +1,8 @@
 import unittest
 from roman.convert import int_to_roman
+from roman.convert import roman_to_int
 
-
-class IntToRomanTests(unittest.TestCase):
+class TestToRoman(unittest.TestCase):
     '''
         tests for converting a integer to a roman numeral
     '''
@@ -78,9 +78,6 @@ class IntToRomanTests(unittest.TestCase):
     def test_convert_3999(self):
         roman = int_to_roman(3999)
         self.assertEqual(roman, "MMMCMXCIX")
-import unittest
-from roman.convert import roman_to_int
-
 
 class TestRomanToInt(unittest.TestCase):
     '''
