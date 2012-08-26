@@ -90,6 +90,8 @@ def roman_to_int(input):
     '''
         Given a string that represents a roman numeral, then,
         return its integer value
+
+        O(N) - iterates through all characters in the array.
     '''
 
     input = input.upper()
