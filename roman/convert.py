@@ -13,13 +13,14 @@ def int_to_roman(input):
        return its modern roman numeral represenation
 
        worst case:
-       O(N), input = Value for every significant digit. example, 1111
+       O(N), input = value for every significant digit. example, 1111
        
        cost +
        13 * (1 comparator + 2 assignments + 1 read + 3 operations + 1 method call)
 
-       cost +
        best case O(?), input = 1000
+
+       cost + 
        1 * ( 1 comparator + 2 assignments + 1 read + 3 operations + 1 method call)
         
        cost:
@@ -35,12 +36,6 @@ def int_to_roman(input):
                - 1 read
                - 3 operations.
                - 1 method call.
-
-       best case:
-
-       input = 1000
-
-
 
     '''
 
@@ -59,7 +54,8 @@ def int_to_roman(input):
     index_lookup = int(math.log10(input)) # 2 method calls, 1 write
 
     while input != 0: # 1 comparator
-        for digit, roman in ints_to_romans[index_lookup]: # 1 read, 2 writes
+
+        for digit, roman in ints_to_romans[index_lookup]: # 1 read, 3 writes
             count = input / digit # 1 write, 1 operation
             result.append(roman * count) # 1 method, 1 operation.
             input -= digit * count # 1 write, 1 operation
