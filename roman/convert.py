@@ -12,14 +12,6 @@ def int_to_roman(input):
        given an integer, input, that is greater than 0 and less than, 4000
        return its modern roman numeral represenation
 
-       worst case:
-       O(N), input = value for every significant digit. example, 1111
-       
-       cost +
-       13 * (1 comparator + 2 assignments + 1 read + 3 operations + 1 method call)
-
-       best case O(?), input = 1000
-
     '''
     if not 0 < input < 4000: # 2 comparators
         raise ValueError("input must be between 1 and 3999")
