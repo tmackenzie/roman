@@ -14,18 +14,6 @@ def int_to_roman(input):
        worst/best case.
        O(1) - b/c no matter what the input is,
         - it will always execute the same methods, comparators and assignments.
-
-       13 * ( 3 operations, 2 reads, 2 writes)
-       + 2 method calls + 2 comparators.
-
-       performs:
-        - 2 method calls.
-        - 2 comparators.
-
-       performs 13 times..
-        - 3 operations.
-        - 3 reads
-        - 2 writes
     '''
 
     if not 0 < input < 4000:
