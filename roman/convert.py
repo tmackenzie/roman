@@ -104,19 +104,58 @@ def roman_to_int(input):
     thousands, hundreds, tens, ones = roman_group_re.match(input).groups()
 
     # should be pretty simple, all I need is a dict to match the vars to their ints.
+    roman_to_int = {
+         "I": 1,
+         "II": 2,
+         "III": 3,
+         "IV": 4,
+         "V": 5,
+         "VI": 6,
+         "VII": 7,
+         "VIII": 8,
+         "IX": 9,
+         "X": 10,
+         "XX": 20,
+         "XXX": 30,
+         "XL": 40,
+         "L": 50,
+         "LX": 60,
+         "LXX": 70,
+         "LXXX": 80,
+         "XC": 90,
+         "C": 100,
+         "CC": 200,
+         "CCC": 300,
+         "CD": 400,
+         "D": 500,
+         "DC": 600,
+         "DCC": 700,
+         "DCCC": 800,
+         "CM": 900,
+         "M": 1000,
+         "MM": 2000,
+         "MMM": 3000}
 
-    nums = {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1}
-    sum = 0
-    for i in range(len(input)):
-        try:
-            value = nums[input[i]]
+    result = 0
 
-            # If the next place holds a larger number, this value is negative.
-            if i + 1 < len(input) and nums[input[i + 1]] > value:
-                sum -= value
-            else:
-                sum += value
-        except KeyError:
-            raise ValueError('input is not a valid Roman numeral: %s' % input)
+    try:
+        result += roman_to_int[thousands]
+    except KeyError:
+        pass
 
-    return sum
+    try:
+        result += roman_to_int[hundreds]
+    except KeyError:
+        pass
+
+    try:
+        result += roman_to_int[tens]
+    except KeyError:
+        pass
+
+    try:
+        result += roman_to_int[ones]
+    except KeyError:
+        pass
+
+    return result
