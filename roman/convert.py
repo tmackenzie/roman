@@ -1,4 +1,5 @@
 import math
+import re
 """
     @author: tmackenzie
 
@@ -95,6 +96,15 @@ def roman_to_int(input):
     '''
 
     input = input.upper()
+
+    # regular expression to parse and validate the input string.
+    roman_group_re = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)')
+
+    # parse input..
+    thousands, hundreds, tens, ones = roman_group_re.match(input).groups()
+
+    # should be pretty simple, all I need is a dict to match the vars to their ints.
+
     nums = {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1}
     sum = 0
     for i in range(len(input)):
