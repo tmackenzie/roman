@@ -47,7 +47,10 @@ def int_to_roman(input):
     while input != 0:
 
         significant = int(math.log10(input)) + 1
+
+        # this could have been a dict look-up, would have improved speed.
         factor = 10 ** (significant - 1)
+
         count = (input / factor)
 
         # acquire the arabic and roman values
