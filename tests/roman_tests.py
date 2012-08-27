@@ -92,9 +92,15 @@ class TestRomanToInt(unittest.TestCase):
         ''' expected to raise a Value Error if the input is > 3999 '''
         self.assertRaises(ValueError, roman_to_int, "MMMM")
 
-    def test_raise_jiberish(self):
+    def test_raise_invalid(self):
         ''' expected to raise a ValueError when invalid input '''
         self.assertRaises(ValueError, roman_to_int, "blah balha 98988")
+
+    def test_raise_invalid_with_roman_numrals(self):
+        self.assertRaises(ValueError, roman_to_int, "BlahMMM")
+
+    def test_raise_invalid_with_leading_roman_numerals(self):
+        self.assertRaises(ValueError, roman_to_int, "MMMBlah")
 
     def test_convert_I(self):
         number = roman_to_int("I")
