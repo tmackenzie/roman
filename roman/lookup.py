@@ -33,6 +33,14 @@ INT_TO_ROMAN = {
         2: (2000, 'MM'),
         3: (3000, 'MMM')}}
 
+# matches signifcant digits to their factors.
+FACTOR = {
+    1: 1,
+    2: 10,
+    3: 100,
+    4: 1000}
+
+# matches roman numerals to their ints.
 ROMAN_TO_INT = {
     "I": 1,
     "II": 2,

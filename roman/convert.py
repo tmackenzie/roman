@@ -1,6 +1,6 @@
 import math
 import re
-from lookup import INT_TO_ROMAN, ROMAN_TO_INT
+from lookup import INT_TO_ROMAN, ROMAN_TO_INT, FACTOR
 
 """
     @author: tmackenzie
@@ -32,26 +32,18 @@ def int_to_roman(input):
             3 = hundreds
             4 = thousands.
 
-        factor, is the whole number for the current significant digit.
-        used to calculate, count.
-            example, input = 101
-            - factor = 100.
-
         count, the number of times input is divisible by factor.
         used to lookup the arabic, romans tuple.
             example, input = 101, factor = 100
             - count = 1
-
+            - uses the FACTOR dict to look-up it's value.
     """
 
     while input != 0:
 
         significant = int(math.log10(input)) + 1
 
-        # this could have been a dict look-up, would have improved speed.
-        factor = 10 ** (significant - 1)
-
-        count = (input / factor)
+        count = (input / FACTOR[significant])
 
         # acquire the arabic and roman values
         number, roman = INT_TO_ROMAN[significant][count]
