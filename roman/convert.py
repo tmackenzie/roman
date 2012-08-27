@@ -8,8 +8,8 @@ from lookup import INT_TO_ROMAN, ROMAN_TO_INT
 """
 
 # used in roman_to_int
-ROMAN_VALIDATE_RE = re.compile('^([M]{4,})')
-ROMAN_GROUP_RE = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)')
+ROMAN_VALIDATE_RE = re.compile('^[M]{4,}')
+ROMAN_GROUP_RE = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)$')
 
 def int_to_roman(input):
     """
