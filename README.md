@@ -26,9 +26,11 @@ Or via pip.
 pip through requirements.txt
 ============================
 
-    Add the following to your requirements.txt.
+Add the following to your requirements.txt.
 
     git+git://github.com/tmackenzie/roman.git
+
+Then run.
 
     $ pip install -r requirements.txt
 
