@@ -48,7 +48,7 @@ def int_to_roman(input):
 
         significant = int(math.log10(input)) + 1
 
-        # this could have been a dict look-up, would have improved speed.
+        # this could have been a dict look-up, see branch factor_dict..
         factor = 10 ** (significant - 1)
 
         count = (input / factor)
