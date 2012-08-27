@@ -15,10 +15,16 @@ MMMCMXCIX or 3,999
 Command Line Installation
 =========================
 
+Download the tar or clone the git repo, then run.
+
     $ python setup.py install
 
-Add to a requirements.txt
-=========================
+Or via pip.
+    
+    $ pip install git+git://github.com/tmackenzie/roman.git
+
+pip through requirements.txt
+============================
 
     Add the following to your requirements.txt.
 
