@@ -11,6 +11,7 @@ from lookup import INT_TO_ROMAN, ROMAN_TO_INT
 ROMAN_VALIDATE_RE = re.compile('^[M]{4,}')
 ROMAN_GROUP_RE = re.compile('^([M]{0,3})([DCM]*)([XLC]*)([IVX]*)$')
 
+
 def int_to_roman(input):
     """
        given an integer, input, that is greater than 0 and less than, 4000
@@ -66,7 +67,6 @@ def roman_to_int(input):
     """
 
     input = input.upper()
-
 
     if ROMAN_VALIDATE_RE.match(input) or input == "NULLA":
         raise ValueError("input must be between I and MMMCMXCIX")
